@@ -7,5 +7,5 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ActivityException extends RuntimeException{
 
-    private final ActivityError activitiesError;
+    private final ActivityError activityError;
 }

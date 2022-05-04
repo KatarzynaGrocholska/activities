@@ -1,5 +1,8 @@
 package com.example.activities.service;
 
+import ch.qos.logback.core.joran.spi.ActionException;
+import com.example.activities.exception.ActivityError;
+import com.example.activities.exception.ActivityException;
 import com.example.activities.model.dto_input.ActivityInputDTO;
 import com.example.activities.model.dto_output.ActivityOutputDTO;
 import com.example.activities.model.entity.Activity;
@@ -21,11 +24,11 @@ public class ActivityService {
     private final ActivityRepository activityRepository;
     private final ActivityMapper activityMapper = ActivityMapper.INSTANCE;
     private final ActivityValidation activityValidation;
+    private final WebClient webClient;
 
 
     public ActivityInputDTO getRandomActivity() {
-        WebClient webClinet = new WebClient();
-        return webClinet.callApi();
+        return webClient.callApi();
     }
 
     public void saveRandomActivity() {
@@ -43,7 +46,11 @@ public class ActivityService {
     }
 
     public List<ActivityOutputDTO> showAllSavedActivities() {
-        List<Activity> activityList = activityRepository.findAll();
+
+            List<Activity> activityList = activityRepository.findAll();
+        if(activityList.isEmpty()){
+throw new ActivityException(ActivityError.ACTIVITY_LIST_NOT_FOUND);
+        }
         return activityMapper.activityListToActivityOutputDtoList(activityList);
     }
 
