@@ -1,6 +1,5 @@
 package com.example.activities.service;
 
-import ch.qos.logback.core.joran.spi.ActionException;
 import com.example.activities.exception.ActivityError;
 import com.example.activities.exception.ActivityException;
 import com.example.activities.model.dto_input.ActivityInputDTO;
@@ -47,9 +46,9 @@ public class ActivityService {
 
     public List<ActivityOutputDTO> showAllSavedActivities() {
 
-            List<Activity> activityList = activityRepository.findAll();
-        if(activityList.isEmpty()){
-throw new ActivityException(ActivityError.ACTIVITY_LIST_NOT_FOUND);
+        List<Activity> activityList = activityRepository.findAll();
+        if (activityList.isEmpty()) {
+            throw new ActivityException(ActivityError.ACTIVITY_LIST_NOT_FOUND);
         }
         return activityMapper.activityListToActivityOutputDtoList(activityList);
     }
