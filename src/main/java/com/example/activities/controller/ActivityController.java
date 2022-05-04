@@ -15,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-//@AllArgsConstructor
 @RequestMapping("/activity")
 public class ActivityController {
 
@@ -28,18 +27,13 @@ public class ActivityController {
         return activityService.getRandomActivity();
     }
 
-//    @GetMapping("/save")
-//    public void save() {
-//        activityService.saveRandomActivity();
-//    }
-
     @GetMapping("/all")
     public List<ActivityOutputDTO> getAllSavedActivities() {
         return activityService.showAllSavedActivities();
     }
 
 
-    @GetMapping(path = "/type")
+    @GetMapping(path = "")
     public List<ActivityOutputDTO> getAllRecruitmentsByStatus(@RequestParam List<String> typeList,
                                                          @RequestParam(required = false) Integer page,
                                                          @RequestParam(required = false) Integer size) {

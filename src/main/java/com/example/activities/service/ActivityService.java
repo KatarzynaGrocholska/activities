@@ -43,14 +43,13 @@ public class ActivityService {
     }
 
     public List<ActivityOutputDTO> showAllSavedActivities() {
-            List<Activity> activityList = activityRepository.findAll();
-
-        return activityMapper.activityListToActivityOutputDtoList(activityList) ;
+        List<Activity> activityList = activityRepository.findAll();
+        return activityMapper.activityListToActivityOutputDtoList(activityList);
     }
 
     public List<ActivityOutputDTO> getAllActivitiesByTypeList(List<String> typeList,
-                                                        Integer pageNumber,
-                                                        Integer sizeOfQuery) {
+                                                              Integer pageNumber,
+                                                              Integer sizeOfQuery) {
 
         int repositoryListSize = activityRepository.countActivitiesByTypeIn(typeList);
 
