@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 @Transactional
@@ -27,9 +28,11 @@ public class ActivityService {
 
 
     public ActivityInputDTO getRandomActivity() {
+        //FIXME the goal was to remember which activities have already been proposed - does this call guarantee a new and unique activity?
         return webClient.callApi();
     }
 
+    //FIXME this method does more than one thing - gets an activity and saves it. Divide into 2 separate ones.
     public void saveRandomActivity() {
         List<Activity> activitiesList = activityRepository.findAll();
         ActivityInputDTO randomActivityInputDTO = getRandomActivity();
@@ -37,6 +40,8 @@ public class ActivityService {
         if (activitiesList.isEmpty()) {
             activityRepository.save(randomActivity);
         }
+        // TODO a Stream would've solved this easier
+        //FIXME this loop does nothing
         for (Activity activity : activitiesList)
             if (activity.getKey().equals(
                     getRandomActivity().getKey())) {
@@ -53,6 +58,7 @@ public class ActivityService {
         return activityMapper.activityListToActivityOutputDtoList(activityList);
     }
 
+    //TODO why are pageNumber and sizeOfQuery objects and not simple types?
     public List<ActivityOutputDTO> getAllActivitiesByTypeList(List<String> typeList,
                                                               Integer pageNumber,
                                                               Integer sizeOfQuery) {
@@ -70,9 +76,10 @@ public class ActivityService {
 
         List<Activity> activityListByType = activityRepository
                 .findActivitiesByTypeIn(typeList, PageRequest.of(pageNumber - 1, sizeOfQuery));
+// TODO - unnecessary variable - the method name is very self explanatory
+//        List<ActivityOutputDTO> activityOutputDTOList =
+        return activityMapper.activityListToActivityOutputDtoList(activityListByType);
 
-        List<ActivityOutputDTO> activityOutputDTOList = activityMapper.activityListToActivityOutputDtoList(activityListByType);
-
-        return activityOutputDTOList;
+//        return activityOutputDTOList;
     }
 }

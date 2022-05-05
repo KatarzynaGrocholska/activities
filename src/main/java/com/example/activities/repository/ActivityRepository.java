@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+//FIXME maybe a map would be better than a list?
 public interface ActivityRepository extends JpaRepository<Activity, Integer> {
     List<Activity> findActivitiesByTypeIn(List<String> typeList, Pageable pageable);
 

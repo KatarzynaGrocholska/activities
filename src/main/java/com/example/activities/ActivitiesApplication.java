@@ -11,3 +11,6 @@ public class ActivitiesApplication {
     }
 
 }
+
+//TODO Ogólnie aplikacja wygląda nieźle, jej struktura jest dobrze rozpisana.
+//Nie rozumiem co robisz w pakiecie exception, trochę to przekomplikowane.

@@ -6,6 +6,5 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class ActivityException extends RuntimeException{
-
     private final ActivityError activityError;
 }

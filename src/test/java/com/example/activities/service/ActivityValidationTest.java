@@ -50,7 +50,7 @@ public class ActivityValidationTest {
         int repositorySizeListZero = activityValidation.calculateProperPagesCount(repositoryListSizeZero, sizeOfQueryNumberSix);
         int moduloSizeOfQueryAndActivityListSizeNotZero = activityValidation.calculateProperPagesCount(repositoryListSizeFive, sizeOfQueryNumberTwo);
         int moduloSizeOfQueryAndActivityListSizeZero = activityValidation.calculateProperPagesCount(repositoryListSizeSix, sizeOfQueryNumberThree);
-
+        // TODO not a serious issue, but if you use the variables only once a comment would be enough
         //then
         assertAll(
                 () -> assertEquals(1, repositorySizeListZero),
@@ -63,6 +63,8 @@ public class ActivityValidationTest {
     void shouldReturnWholeListOfActivitiesWhenSizeOfQueryIsZeroOrNegative() {
         //given
         List<Activity> listOfActivity = new ArrayList<>();
+        //FIXME - listOfActivity is always empty
+        //TODO again, the variables below are used just once, a comment would be enough
         int sizeOfQueryNumberZero = 0;
         int sizeOfQueryNumberNegative = -2;
         //when

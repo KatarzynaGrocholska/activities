@@ -23,6 +23,7 @@ public class ActivityController {
     @PrePersist
     @GetMapping("/random")
     public ActivityInputDTO random() {
+        // TODO if saveRandomActivity returned something, you could pass it immediately without having to call the get method
         activityService.saveRandomActivity();
         return activityService.getRandomActivity();
     }
